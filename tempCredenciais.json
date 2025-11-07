@@ -1,10 +1,9 @@
 {
-  "criadoEm": "2025-10-31T15:37:11.204Z",
-  "usuariosESenhas": [
-    {
-      "usuario": "JJ196335",
-      "senha": "upsp5140",
-      "arquivo": null
+  "criadoEm": "2025-11-07T16:54:47.532Z",
+  "usuariosESenhas": {
+    "error": {
+      "message": "connect ETIMEDOUT",
+      "code": "ETIMEDOUT"
     }
-  ]
+  }
 }
