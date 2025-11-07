@@ -1,0 +1,152 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import pool from '../../db'
+
+export async function insertDadosMinerados(id_lead: number, codigo: number, item: any, indicadorPermitidoContratarCredito: string): Promise<any> {
+    const query = `
+    INSERT INTO crm_malling_banco_brasil_dados_minerados (
+      id_lead,
+      codigo,
+      numeroSequencialOpcaoSugestao,
+      valorSolicitado,
+      valorAdicionalSolicitado,
+      valorParcela,
+      valorParcelaSeguro,
+      valorSeguro,
+      quantidadeParcelas,
+      percentualJuroMensal,
+      percentualCustoEfetivoTotalAnual,
+      percentualCustoEfetivoTotalAnualSeguro,
+      dataVencimentoSolicitada,
+      dataPrimeiroVencimento,
+      dataUltimoVencimento,
+      indicadorTipoCredito,
+      codigoCategoriaLinhaCredito,
+      codigoLinhaCredito,
+      nomeLinhaCredito,
+      codigoProduto,
+      codigoModalidade,
+      codigoFormaCobranca,
+      indicadorLinhaCreditoVinculado,
+      indicadorIsentoImpostoSobreOprFinanceiras,
+      indicadorPermissaoSeguro,
+      indicadorPermissaoFinanciamentoTarifa,
+      indicadorPermissaoTaxaEspecial,
+      indicadorCondicaoEspecial,
+      indicadorRisco,
+      indicadorSeguro,
+      indicadorProduto,
+      indicadorServico,
+      indicadorSalario,
+      indicadorPermissaoContratacaoNaoPresenca,
+      particularidadePessoa,
+      indicadorIdExercito,
+      codigoIdentificacaoExercito,
+      valorMargemConsignacao,
+      indicadorTipoCalculo,
+      codigoTipoCalculo,
+      valorLimiteAprovado,
+      valorLimiteUtilizado,
+      valorLimiteDisponivel,
+      valorCapacidadeMaximoPagamento,
+      anoBaseDecimoTerceiroSalario,
+      numeroParcelaAntecipacaoDecimoTerceiroSalario,
+      dataCobrancaProvavel,
+      quantidadeOperacaoRenegociado,
+      descricaoItem,
+      descricaoParcela,
+      descricaoTaxa,
+      indicadorOfereceSeguro,
+      indicadorPermitidoContratarCredito
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `
+
+    const values = [
+        id_lead,
+        codigo,
+        item.numeroSequencialOpcaoSugestao,
+        item.valorSolicitado,
+        item.valorAdicionalSolicitado,
+        item.valorParcela,
+        item.valorParcelaSeguro,
+        item.valorSeguro,
+        item.quantidadeParcelas,
+        item.percentualJuroMensal,
+        item.percentualCustoEfetivoTotalAnual,
+        item.percentualCustoEfetivoTotalAnualSeguro,
+        item.dataVencimentoSolicitada,
+        item.dataPrimeiroVencimento,
+        item.dataUltimoVencimento,
+        item.indicadorTipoCredito,
+        item.codigoCategoriaLinhaCredito,
+        item.codigoLinhaCredito,
+        item.nomeLinhaCredito,
+        item.codigoProduto,
+        item.codigoModalidade,
+        item.codigoFormaCobranca,
+        item.indicadorLinhaCreditoVinculado,
+        item.indicadorIsentoImpostoSobreOprFinanceiras,
+        item.indicadorPermissaoSeguro,
+        item.indicadorPermissaoFinanciamentoTarifa,
+        item.indicadorPermissaoTaxaEspecial,
+        item.indicadorCondicaoEspecial,
+        item.indicadorRisco,
+        item.indicadorSeguro,
+        item.indicadorProduto,
+        item.indicadorServico,
+        item.indicadorSalario,
+        item.indicadorPermissaoContratacaoNaoPresenca,
+        item.particularidadePessoa,
+        item.indicadorIdExercito,
+        item.codigoIdentificacaoExercito,
+        item.valorMargemConsignacao,
+        item.indicadorTipoCalculo,
+        item.codigoTipoCalculo,
+        item.valorLimiteAprovado,
+        item.valorLimiteUtilizado,
+        item.valorLimiteDisponivel,
+        item.valorCapacidadeMaximoPagamento,
+        item.anoBaseDecimoTerceiroSalario,
+        item.numeroParcelaAntecipacaoDecimoTerceiroSalario,
+        item.dataCobrancaProvavel,
+        item.quantidadeOperacaoRenegociado,
+        item.descricaoItem,
+        item.descricaoParcela,
+        item.descricaoTaxa,
+        item.indicadorOfereceSeguro,
+        indicadorPermitidoContratarCredito
+    ]
+
+    await pool.query(query, values)
+}
+
+export async function insertConvenioEmpregador(id_lead: number, item: any): Promise<void> {
+    const sql = `
+    INSERT INTO crm_malling_banco_brasil_convenio_empregador (
+      id_lead,
+      codigoEmpregador,
+      codigoConvenioEmpregador,
+      numeroBeneficioEmpregador,
+      margemConsignavelEmpregador,
+      origemMargemEmpregador,
+      numeroOrgaoEmpregador,
+      matriculaEmpregador,
+      numeroConvenio,
+      nomeConvenio
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `
+
+    const values = [
+        id_lead.toString(),
+        item.codigoEmpregador?.toString(),
+        item.codigoConvenioEmpregador?.toString(),
+        item.numeroBeneficioEmpregador?.toString(),
+        item.margemConsignavelEmpregador?.toString(),
+        item.origemMargemEmpregador?.toString(),
+        item.numeroOrgaoEmpregador?.toString(),
+        item.matriculaEmpregador?.toString(),
+        item.numeroConvenio?.toString(),
+        item.nomeConvenio?.toString(),
+    ]
+
+    await pool.query(sql, values)
+}
